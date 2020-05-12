@@ -192,7 +192,7 @@ ui <- fluidPage(
 
         # Show a map of erruptions
         mainPanel(
-           plotOutput("map")
+            plotOutput("map")
         )
 )
 )
@@ -225,12 +225,19 @@ server <- function(input, output) {
             geom_polygon(data = map.world,
                          aes(x = long, y = lat, group = group)) +
             geom_point(data = eruptions_filtered,
-                       aes(x = latitude,
-                           y = longitude,
+                       aes(x = longitude,
+                           y = latitude,
                            color = eruption_category,
                            size = count,
-                           alpha = elevation)
-                       )
+                           alpha = elevation
+                           )
+                       )+
+                           labs(x = "Longitude",
+                                y = "Latitude",
+                                color = "Eruption Category",
+                                size = "Number of Eruptions",
+                                alpha = "Elevation"
+                                )
     })
 }
 
